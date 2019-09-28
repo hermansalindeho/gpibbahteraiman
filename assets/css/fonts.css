@@ -1,0 +1,15 @@
+.font-18 {
+	font-size: 18px;
+}
+
+.font-20 {
+	font-size: 20px;
+}
+
+.jumbotron p.font-18 {
+	font-size: 18px;
+}
+
+.jumbotron p.font-20 {
+	font-size: 20px;
+}

@@ -1,0 +1,600 @@
+Return-Path: <gpibbahteraiman+caf_=sekretariat=gpibbahteraiman.com@gmail.com>
+Delivered-To: sekretariat@gpibbahteraiman.com
+Received: from cl460112x.maintenis.com
+	by cl460112x.maintenis.com with LMTP id wCwdANBJ/Fo6HQAAhSRp1Q
+	for <sekretariat@gpibbahteraiman.com>; Wed, 16 May 2018 11:10:08 -0400
+Return-path: <gpibbahteraiman+caf_=sekretariat=gpibbahteraiman.com@gmail.com>
+Envelope-to: sekretariat@gpibbahteraiman.com
+Delivery-date: Wed, 16 May 2018 11:10:08 -0400
+Received: from mail-oi0-f43.google.com ([209.85.218.43]:43341)
+	by cl460112x.maintenis.com with esmtps (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+	(Exim 4.91)
+	(envelope-from <gpibbahteraiman+caf_=sekretariat=gpibbahteraiman.com@gmail.com>)
+	id 1fIxZD-0007Ur-SS
+	for sekretariat@gpibbahteraiman.com; Wed, 16 May 2018 10:38:12 -0400
+Received: by mail-oi0-f43.google.com with SMTP id p62-v6so899478oie.10
+        for <sekretariat@gpibbahteraiman.com>; Wed, 16 May 2018 07:37:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:delivered-to:dkim-signature:mime-version:date
+         :message-id:subject:from:to;
+        bh=mAFz4Z1EzUlmMcTfnvT1CkBHQG0W5ZabeuTYZ9+mJJ0=;
+        b=P1+O0TGjuC19Nunc2+koeQdV69Pl35fDthgz2EF7RXC5qJXGs6d6NN6gX2xggPtTTK
+         xP/2gfXXWzMtO1X9sq+l2Qp0ATZ7IVZCr458WSJcPjEdZNapgIXgOIFCZWoBCwkwUi20
+         CWLoS5XSa0bEh1TWIWq5OtxwOSlYk0hBRnaF9TcLwVzsy5UPl65LDmz20AIzDPE1NA9G
+         8+AONd7xu1T9ZeWGpM113K3coyrYOB7wFrGB9f+FSS8WWTm7tAnPdfyVFJD55rX/+oAH
+         yvSuefiGPHcj+99zQGWyrw+UruloYsbynyia2dRhZA3mlv6e+t5im5sIkYbzDPbMBTAe
+         GNuQ==
+X-Gm-Message-State: ALKqPwehbLPSyqGkEgxKgkwoCrxhZ0X5JJOsPcQ3EaEkulA4FhFx/ZF6
+	BlQaEbTGblvBXa1heRS3bs2ZHHFn41E7O2DE+xuyvrnYfLDIHZU=
+X-Received: by 2002:aca:1a11:: with SMTP id a17-v6mr787689oia.35.1526481450626;
+        Wed, 16 May 2018 07:37:30 -0700 (PDT)
+X-Forwarded-To: sekretariat@gpibbahteraiman.com
+X-Forwarded-For: gpibbahteraiman@gmail.com sekretariat@gpibbahteraiman.com
+Delivered-To: gpibbahteraiman@gmail.com
+Received: by 2002:a9d:5909:0:0:0:0:0 with SMTP id t9-v6csp504611oth;
+        Wed, 16 May 2018 07:37:29 -0700 (PDT)
+X-Received: by 2002:a1f:611:: with SMTP id 17-v6mr975159vkg.181.1526481449705;
+        Wed, 16 May 2018 07:37:29 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1526481449; cv=none;
+        d=google.com; s=arc-20160816;
+        b=LxSrDInj8bISG3yyd6ESAbF/03optanJEsWPo8WQwNMesz/uSuUGn5+CAP/9dbuUc/
+         3RVpuhlqI1ZGV6wKCJCfLZoVJBn9J7qgXDeTi3yM7ccDi+yoKkxrVEkAa2q2QqglPSOY
+         pSyg5KhejGG38GJJ+qPCX0vFI+dktrThly6dZ8xg3tjObRlorvERCP8Xjgt9SxtTPgyz
+         JvdHQvpBrh1KAPfzG5+y3bjYbqIshK/Fh7aF02IUcD/vEqOVtmCBnluOB+c8qkNb8Zwf
+         7z/ebG/mrJjn9yNcWA8PTDPdNhZD/mvv3b4wxjDDBEqhcEeVWNl6PQDaluNyXSM3L2Pp
+         +iTA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:from:subject:message-id:date:mime-version:dkim-signature
+         :arc-authentication-results;
+        bh=mAFz4Z1EzUlmMcTfnvT1CkBHQG0W5ZabeuTYZ9+mJJ0=;
+        b=N0rJFL11eCl6LTov4rAM76Wc+XRYpxZx7BvYSJa2foPmFZuZs/C6aUIa6Rs4AymWzQ
+         wTYCIcfraVcYTRtJx0zrVJnGo2SK4Hi10lGfLOcKBk/IxqfV7Eo5l+mWwCM6LQuJp/5s
+         bYgsLo5EmnuIbVIYq5HXzVkaS0Hb8eOHDWXh+0m4r2EgjxGDGqxK2x9njfOFyAaGLKRO
+         3WGwVSziEJRCams0JKzQzJej7W2MQ0cE8b+NTjFbdrrGyAfkKvs3ax9BS7tbWN71PwkZ
+         5esxLfInHk9yMbNytHKMo0vyjjtCzBFLPJFEZSAwtXNhlUMvj5BReVMSyANuQcxC58h/
+         CwyA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@google.com header.s=20161025 header.b=enz7L9IZ;
+       spf=pass (google.com: domain of 3kul8wg8tahwuwn0fh3-stwjuq3utqnhnjx.lttlqj.htr@chime-notifications.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=3KUL8Wg8TAHwuwn0fh3-stwjuq3utqnhnjx.lttlqj.htr@chime-notifications.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com
+Received: from mail-sor-f69.google.com (mail-sor-f69.google.com. [209.85.220.69])
+        by mx.google.com with SMTPS id c10-v6sor2248504uac.118.2018.05.16.07.37.29
+        for <gpibbahteraiman@gmail.com>
+        (Google Transport Security);
+        Wed, 16 May 2018 07:37:29 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 3kul8wg8tahwuwn0fh3-stwjuq3utqnhnjx.lttlqj.htr@chime-notifications.bounces.google.com designates 209.85.220.69 as permitted sender) client-ip=209.85.220.69;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@google.com header.s=20161025 header.b=enz7L9IZ;
+       spf=pass (google.com: domain of 3kul8wg8tahwuwn0fh3-stwjuq3utqnhnjx.lttlqj.htr@chime-notifications.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=3KUL8Wg8TAHwuwn0fh3-stwjuq3utqnhnjx.lttlqj.htr@chime-notifications.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:date:message-id:subject:from:to;
+        bh=mAFz4Z1EzUlmMcTfnvT1CkBHQG0W5ZabeuTYZ9+mJJ0=;
+        b=enz7L9IZNVnrmRzJCtqVS6qZNVE0QxryR1Ig1K6RDQmw9CT8fAZzY+d2OsdscUSi6X
+         ACmbQSAsd6YjYiCPqZo7d1UZDYbkFeFrkR7QMrRabEMcVYWq90938LR8UAucWqosygwm
+         nLpvVFaD81P/nBr8GRvVcJ2Ew/nfacEZWqbbfttYSPQZMM+m4meoJ4D6m0PH0vKGvT7y
+         KPz5Twna/nMsNe2k0y2KvI3/1MxUxJnJyBTUZJyTT3qylLPy88cp5tdz+kK4rMYaP2ou
+         1l1k3N29xiMoN0JnTFA9gQQKi3Of8mOIY+3tL01AkMWxWOY9zQsoCq1kUkqGKABy8Wu+
+         3lXg==
+X-Google-Smtp-Source: AB8JxZqJn+KeKnzdcisr80rtL9z1WJXY90KSi49NVmCANiHP/8HpF0R+ylkoHMW/HxMsoX9eFV6FQdNH9VDl0MbKxeIko1UZF9X5q1iW2rYDdQ==
+MIME-Version: 1.0
+X-Received: by 2002:ab0:61d8:: with SMTP id m24-v6mr925431uan.49.1526481449332;
+ Wed, 16 May 2018 07:37:29 -0700 (PDT)
+Date: Wed, 16 May 2018 07:37:29 -0700
+X-Notifications: gpibbahteraiman@gmail.com|0
+Message-ID: <d757d1cd792cd454@policies.google.com>
+Subject: Improvements to our Privacy Policy and Privacy Controls
+From: Google <privacy-noreply@policies.google.com>
+To: gpibbahteraiman@gmail.com
+Content-Type: multipart/alternative; boundary="0000000000008b30da056c53a805"
+
+--0000000000008b30da056c53a805
+Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
+Content-Transfer-Encoding: base64
+
+Z3BpYmJhaHRlcmFpbWFuQGdtYWlsLmNvbQ0KDQpUaGlzIG1vbnRoLCB3ZeKAmXJlIHVwZGF0aW5n
+IG91ciBQcml2YWN5IFBvbGljeSB0byBtYWtlIGl0IGVhc2llciBmb3IgeW91IHRvICANCnVuZGVy
+c3RhbmQgd2hhdCBpbmZvcm1hdGlvbiB3ZSBjb2xsZWN0IGFuZCB3aHkgd2UgY29sbGVjdCBpdC4g
+V2XigJl2ZSBhbHNvICANCnRha2VuIHN0ZXBzIHRvIGltcHJvdmUgb3VyIFByaXZhY3kgQ2hlY2t1
+cCBhbmQgb3RoZXIgY29udHJvbHMgd2UgcHJvdmlkZSB0byAgDQpzYWZlZ3VhcmQgeW91ciBkYXRh
+IGFuZCBwcm90ZWN0IHlvdXIgcHJpdmFjeS4NCg0KTm90aGluZyBpcyBjaGFuZ2luZyBhYm91dCB5
+b3VyIGN1cnJlbnQgc2V0dGluZ3Mgb3IgaG93IHlvdXIgaW5mb3JtYXRpb24gaXMgIA0KcHJvY2Vz
+c2VkLiBSYXRoZXIsIHdl4oCZdmUgaW1wcm92ZWQgdGhlIHdheSB3ZSBkZXNjcmliZSBvdXIgcHJh
+Y3RpY2VzIGFuZCBob3cgIA0Kd2UgZXhwbGFpbiB0aGUgb3B0aW9ucyB5b3UgaGF2ZSB0byB1cGRh
+dGUsIG1hbmFnZSwgZXhwb3J0LCBhbmQgZGVsZXRlIHlvdXIgIA0KZGF0YS4NCg0KV2XigJlyZSBt
+YWtpbmcgdGhlc2UgdXBkYXRlcyBhcyBuZXcgZGF0YSBwcm90ZWN0aW9uIHJlZ3VsYXRpb25zIGNv
+bWUgaW50byAgDQplZmZlY3QgaW4gdGhlIEV1cm9wZWFuIFVuaW9uLCBhbmQgd2XigJlyZSB0YWtp
+bmcgdGhlIG9wcG9ydHVuaXR5IHRvIG1ha2UgIA0KaW1wcm92ZW1lbnRzIGZvciBHb29nbGUgdXNl
+cnMgYXJvdW5kIHRoZSB3b3JsZC4NCg0KTWFraW5nIG91ciBQcml2YWN5IFBvbGljeSBlYXNpZXIg
+dG8gdW5kZXJzdGFuZA0KDQpTaW1wbGVyIHN0cnVjdHVyZSAmIGNsZWFyZXIgbGFuZ3VhZ2UNCg0K
+V2XigJl2ZSBpbXByb3ZlZCB0aGUgbmF2aWdhdGlvbiBhbmQgb3JnYW5pemF0aW9uIG9mIHRoZSBw
+b2xpY3kgdG8gbWFrZSBpdCAgDQplYXNpZXIgdG8gZmluZCB3aGF0IHlvdeKAmXJlIGxvb2tpbmcg
+Zm9yLiBXZeKAmXZlIGFsc28gZXhwbGFpbmVkIG91ciBwcmFjdGljZXMgIA0KaW4gbW9yZSBkZXRh
+aWwgYW5kIHdpdGggY2xlYXJlciBsYW5ndWFnZS4NCg0KTmV3IGRlc2NyaXB0aXZlIHZpZGVvcyAm
+IGlsbHVzdHJhdGlvbnMNCg0KT2Z0ZW4gYSB2aXN1YWwgZGVzY3JpcHRpb24gaXMgZWFzaWVyIHRv
+IHVuZGVyc3RhbmQgdGhhbiB0ZXh0IGFsb25lLCBzbyAgDQp3ZeKAmXZlIGFkZGVkIHNob3J0IHZp
+ZGVvcyBhbmQgaWxsdXN0cmF0aW9ucyB0aHJvdWdob3V0IHRoZSBwb2xpY3kuDQoNCkVtYmVkZGVk
+IHByaXZhY3kgY29udHJvbHMNCg0KV2XigJl2ZSBtYWRlIGl0IGVhc2llciB0byBqdW1wIHRvIGtl
+eSBzZXR0aW5ncyBkaXJlY3RseSBmcm9tIHRoZSBwb2xpY3ksICANCmhlbHBpbmcgeW91IG1ha2Ug
+Y2hvaWNlcyBhYm91dCB5b3VyIHByaXZhY3kuDQoNClRoZSByZXZpc2VkIHBvbGljeSBpcyBhdmFp
+bGFibGUgaGVyZSAgDQo8aHR0cHM6Ly9hY2NvdW50cy5nb29nbGUuY29tL0FjY291bnRDaG9vc2Vy
+P0VtYWlsPWdwaWJiYWh0ZXJhaW1hbiU0MGdtYWlsLmNvbSZjb250aW51ZT1odHRwcyUzQSUyRiUy
+RnBvbGljaWVzLmdvb2dsZS5jb20lMkZwcml2YWN5JTJGdXBkYXRlJTNGdXRtX3NvdXJjZSUzRHBw
+LWVtYWlsJTI2dXRtX21lZGl1bSUzRGVtYWlsJTI2dXRtX2NhbXBhaWduJTNEZ2xvYmFsPiAgDQph
+bmQgd2lsbCB0YWtlIGVmZmVjdCBvbiBNYXkgMjUsIDIwMTguDQoNCkltcHJvdmluZyB5b3VyIHBy
+aXZhY3kgY29udHJvbHMNCg0KV2l0aGluIHRoZSBwYXN0IHllYXIsIHdlIHVwZGF0ZWQgTXkgQWN0
+aXZpdHkgIA0KPGh0dHBzOi8vYWNjb3VudHMuZ29vZ2xlLmNvbS9BY2NvdW50Q2hvb3Nlcj9FbWFp
+bD1ncGliYmFodGVyYWltYW4lNDBnbWFpbC5jb20mY29udGludWU9aHR0cHMlM0ElMkYlMkZteWFj
+dGl2aXR5Lmdvb2dsZS5jb20lMkZteWFjdGl2aXR5JTNGdXRtX3NvdXJjZSUzRHBwLWVtYWlsJTI2
+dXRtX21lZGl1bSUzRGVtYWlsJTI2dXRtX2NhbXBhaWduJTNEZ2xvYmFsPiAgDQpzbyB0aGF0IHlv
+dSBjYW4gYmV0dGVyIGFjY2VzcyBhbmQgbWFuYWdlIHRoZSBkYXRhIGluIHlvdXIgR29vZ2xlIEFj
+Y291bnQuICANCldlIGFsc28gbGF1bmNoZWQgYSByZWRlc2lnbmVkIERhc2hib2FyZCAgDQo8aHR0
+cHM6Ly9hY2NvdW50cy5nb29nbGUuY29tL0FjY291bnRDaG9vc2VyP0VtYWlsPWdwaWJiYWh0ZXJh
+aW1hbiU0MGdtYWlsLmNvbSZjb250aW51ZT1odHRwcyUzQSUyRiUyRm15YWNjb3VudC5nb29nbGUu
+Y29tJTJGZGFzaGJvYXJkJTNGdXRtX3NvdXJjZSUzRHBwLWVtYWlsJTI2dXRtX21lZGl1bSUzRGVt
+YWlsJTI2dXRtX2NhbXBhaWduJTNEZ2xvYmFsPiwgIA0Kd2hpY2ggYWxsb3dzIHlvdSB0byBlYXNp
+bHkgc2VlIGFuIG92ZXJ2aWV3IG9mIHByb2R1Y3RzIHlvdeKAmXJlIHVzaW5nIGFuZCAgDQp5b3Vy
+IGRhdGEgYXNzb2NpYXRlZCB3aXRoIHRoZW0uDQoNClRoaXMgbW9udGgsIHdl4oCZdmUgdXBkYXRl
+ZCBvdXIgUHJpdmFjeSBDaGVja3VwICANCjxodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20vQWNj
+b3VudENob29zZXI/RW1haWw9Z3BpYmJhaHRlcmFpbWFuJTQwZ21haWwuY29tJmNvbnRpbnVlPWh0
+dHBzJTNBJTJGJTJGbXlhY2NvdW50Lmdvb2dsZS5jb20lMkZwcml2YWN5Y2hlY2t1cCUzRnV0bV9z
+b3VyY2UlM0RwcC1lbWFpbCUyNnV0bV9tZWRpdW0lM0RlbWFpbCUyNnV0bV9jYW1wYWlnbiUzRGds
+b2JhbD4gIA0Kd2l0aCBuZXcgaWxsdXN0cmF0aW9ucyBhbmQgZXhhbXBsZXMgdG8gaGVscCB5b3Ug
+bWFrZSBtb3JlIGluZm9ybWVkIGNob2ljZXMgIA0KYWJvdXQgeW91ciBrZXkgcHJpdmFjeSBjb250
+cm9scy4gQW5kIHNpbmNlIHdlIHVuZGVyc3RhbmQgdGhhdCB5b3VyICANCnByZWZlcmVuY2VzIG1h
+eSBjaGFuZ2Ugb3ZlciB0aW1lLCB0aGUgbmV3IFByaXZhY3kgQ2hlY2t1cCBlbmFibGVzIHlvdSB0
+byAgDQpzaWduIHVwIGZvciByZWd1bGFyIHJlbWluZGVycyB0byBjaGVjayB5b3VyIHByaXZhY3kg
+c2V0dGluZ3MuDQoNClRvIGxlYXJuIG1vcmUgYWJvdXQgdGhlc2UgYW5kIG90aGVyIGNvbnRyb2xz
+IHRvIG1hbmFnZSB5b3VyIHByaXZhY3ksIHZpc2l0ICANCnlvdXIgR29vZ2xlIEFjY291bnQgIA0K
+PGh0dHBzOi8vYWNjb3VudHMuZ29vZ2xlLmNvbS9BY2NvdW50Q2hvb3Nlcj9FbWFpbD1ncGliYmFo
+dGVyYWltYW4lNDBnbWFpbC5jb20mY29udGludWU9aHR0cHMlM0ElMkYlMkZteWFjY291bnQuZ29v
+Z2xlLmNvbSUyRiUzRnV0bV9zb3VyY2UlM0RwcC1lbWFpbCUyNnV0bV9tZWRpdW0lM0RlbWFpbCUy
+NnV0bV9jYW1wYWlnbiUzRGdsb2JhbD4uDQoNCihjKSAyMDE4IEdvb2dsZSBMTEMsIDE2MDAgQW1w
+aGl0aGVhdHJlIFBhcmt3YXksIE1vdW50YWluIFZpZXcsIENBIDk0MDQzDQoNClRoaXMgZW1haWwg
+d2FzIHNlbnQgdG8gZ3BpYmJhaHRlcmFpbWFuQGdtYWlsLmNvbSB0byBwcm92aWRlIGFuIHVwZGF0
+ZSBhYm91dCAgDQp5b3VyIEdvb2dsZSBBY2NvdW50Lg0K
+--0000000000008b30da056c53a805
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns=3D"http://www.w3.org/1999/xhtml">
+   <head>
+      <title>Privacy Policy</title>
+      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />
+      <!--[if !mso]><!-->
+      <meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge" />
+      <!--<![endif]-->
+      <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scal=
+e=3D1.0" />
+      <meta name=3D"robots" content=3D"no index">
+      <!--[if mso | ie]>
+      <style>
+         img{
+         text-align: center !important;
+         }
+         .wid {
+         width:280px !important;
+         }
+         .paddtop{
+         padding-top: 10px !important;
+         }
+         .paddtop2{
+         padding-top: 7px !important;
+         }
+         .nolineheight{
+         line-height: 0px !important;
+         }
+      </style>
+      <![endif]-->
+      <style>
+         body{
+         font-family:Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;
+         color:#000000;
+         -webkit-text-size-adjust: none !important;
+         -webkit-font-smoothing: antialiased !important;
+         -ms-text-size-adjust: none !important;
+         }
+         table, tr, td {
+         border-collapse:collapse;
+         mso-table-lspace:0pt;
+         mso-table-rspace:0pt;
+         }
+         a:link, a:visited, a:hover, a:active {
+         color: #4285f4;
+         text-decoration: none;
+         }
+         .appleLinks a {color:#000000 !important; text-decoration:none !imp=
+ortant;}
+         strong {
+         font-weight: bold !important;
+         }
+         em {
+         font-style: italic !important;
+         }
+         .yshortcuts a span {
+         color: inherit !important;
+         border-bottom: none !important;
+         }
+         html {
+         -webkit-text-size-adjust: none;
+         -ms-text-size-adjust: 100%;
+         }
+         .ReadMsgBody {
+         width: 100%;
+         }
+         .ExternalClass {
+         width: 100%;
+         }
+         .ExternalClass * {
+         line-height: 100%
+         }
+         td {
+         -webkit-text-size-adjust: none;
+         }
+         a[href^=3Dtel] {
+         color: inherit;
+         text-decoration: none;
+         }
+         .mob-hide {
+         display:none !important;  }
+         div, p, a, li, td { -webkit-text-size-adjust:none; }
+         td { text-decoration:none !important;}
+         a[x-apple-data-detectors]{
+         color: inherit !important;
+         text-decoration: none !important;
+         font-size: inherit !important;
+         font-family: inherit !important;
+         font-weight: inherit !important;
+         line-height: inherit !important;
+         }
+         @media screen and (max-width: 600px) {
+         .table{
+         width: 320px !important;
+         }
+            .imgmob{
+               width: 280px !important;
+               max-width: 280px !important;
+            }
+            .footer{
+               padding-right: 22px !important;
+               padding-left: 25px !important;
+            }
+				.mobblock{
+               width:100% !important;
+               float:left !important;
+            }
+        }
+@media screen and (max-width: 570px) {
+			  .txt{
+					text-align: left !important;
+				}
+				.email{
+					padding-left: 30px !important;
+					padding-top: 10px !important;
+				}
+				.wid100{
+					width: 360px !important;
+					min-width: 360px !important;
+				}
+		  }
+       </style>
+   </head>
+<body style=3D"margin: 0 auto; padding:0px;" bgcolor=3D"#fafafa">
+   <table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" align=3D"cente=
+r" bgcolor=3D"#fafafa">
+      <tr>
+         <td align=3D"center" valign=3D"top">
+                    <!--[if (gte mso 9)|(IE)]>
+            <table align=3D"center" width=3D"600" cellspacing=3D"0" cellpad=
+ding=3D"0">
+               <tr>
+                  <td>
+                     <![endif]-->
+                        <table width=3D"100%" cellspacing=3D"0" cellpadding=
+=3D"0" bgcolor=3D"#fafafa" style=3D"max-width: 600px">
+                          <!--Header starts--><tr>
+                              <td align=3D"center" valign=3D"top" style=3D"=
+padding-top: 20px;padding-bottom: 20px;border-bottom:none;">
+                                 <table width=3D"100%" cellspacing=3D"0" ce=
+llpadding=3D"0">
+                                    <tr>
+                                       <td align=3D"left" valign=3D"middle"=
+ style=3D"padding-left: 30px;" class=3D"mobblock">
+                                          <a href=3D"#" style=3D"text-decor=
+ation: none;"><img style=3D"outline: none; text-decoration: none; display:b=
+lock;" src=3D"https://ssl.gstatic.com/s2/oz/images/notifications/ppemail/up=
+dated_google_logo_new.png" width=3D"98" border=3D"0" alt=3D"Google" title=
+=3D"Google" /></a>
+                                       </td>
+<td align=3D"right" valign=3D"middle" style=3D"padding-right: 25px;" class=
+=3D"txt email wid100 mobblock"> <table align=3D"right" cellspacing=3D"0" ce=
+llpadding=3D"0" class=3D"mobblock"><tr>
+                                                <td class=3D"txt" align=3D"=
+right" valign=3D"middle" style=3D"font-family: Roboto, Arial, Open Sans, He=
+lvetica, sans-serif;font-size: 14px;line-height: 24px;color: #5F6368;font-w=
+eight: 500"><a href=3D"#" style=3D"text-decoration: none; color: #5F6368;">=
+gpibbahteraiman@gmail.com</a>
+                                                </td>
+                                             </tr>
+                                          </table>
+                                       <td>
+                                    </tr>
+                                 </table>
+                              </td>
+                           </tr> <!--Header ends-->
+                           <!--Body starts-->
+                           <tr>
+                              <td align=3D"center" style=3D"padding-left: 1=
+5px;padding-right: 15px;">
+                                 <table width=3D"100%" cellspacing=3D"0" ce=
+llpadding=3D"0">
+                                    <tr>
+                                      <td bgcolor=3D"#ffffff" style=3D"padd=
+ing-left: 35px;padding-right: 35px;box-shadow: 0px 1px 2px 1px rgba(0,0,0,0=
+.24);
+-webkit-box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.24);
+-moz-box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.24);border-radius: 4px">
+                                          <table width=3D"100%" cellspacing=
+=3D"0" cellpadding=3D"0">
+                                                   <tr>
+                                                      <td align=3D"center" =
+valign=3D"top" style=3D"padding-top: 35px">
+                                                         <a href=3D"#" styl=
+e=3D"text-decoration: none; max-width: 350px; display: block;"><img src=3D"=
+https://ssl.gstatic.com/s2/oz/images/notifications/ppemail/privacy_header_2=
+x.png" alt=3D"Updating Our Privacy Policy" title=3D"Updating Our Privacy Po=
+licy" width=3D"350" height=3D"auto" style=3D"display: block; max-width: 350=
+px; width: 100%; height: auto;"></a>
+                                                      </td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td align=3D"left" va=
+lign=3D"top" style=3D"padding-top: 25px;font-family: Roboto Regular,Helveti=
+ca,Arial,sans-serif;font-size: 14px;line-height: 24px;color: #5F6368">
+                                                         This month, we=E2=
+=80=99re updating our Privacy Policy to make it easier for you to understan=
+d what information we collect and why we collect it. We=E2=80=99ve also tak=
+en steps to improve our Privacy Checkup and other controls we provide to sa=
+feguard your data and protect your privacy.
+                                                      </td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td align=3D"left" va=
+lign=3D"top" style=3D"padding-top: 15px;font-family: Roboto Regular,Helveti=
+ca,Arial,sans-serif;font-size: 14px;line-height: 24px;color: #5F6368">
+                                                         Nothing is changin=
+g about your current settings or how your information is processed. Rather,=
+ we=E2=80=99ve improved the way we describe our practices and how we explai=
+n the options you have to update, manage, export, and delete your data.
+                                                   </tr>
+                                                     <tr>
+                                                      <td align=3D"left" va=
+lign=3D"top" style=3D"padding-top: 15px;padding-bottom: 35px; font-family: =
+Roboto Regular,Helvetica,Arial,sans-serif;font-size: 14px;line-height: 24px=
+;border-bottom:1px solid #d5d5d5;color: #5F6368">
+                                                         We=E2=80=99re maki=
+ng these updates as new data protection regulations come into effect in the=
+ European Union, and we=E2=80=99re taking the opportunity to make improveme=
+nts for Google users around the world.
+                                                   </tr>
+                                                   <tr>
+                                                      <td align=3D"left" va=
+lign=3D"top" style=3D"padding-top:35px;font-family: Google Sans, Roboto, Ar=
+ial, Open Sans, Helvetica, sans-serif;font-size: 20px;line-height: 28px;col=
+or: #202124;font-weight: 500">
+                                                              Making our Pr=
+ivacy Policy easier to understand
+                                                      </td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td align=3D"center" =
+valign=3D"top" style=3D"padding-top: 13px">
+                                                           <a href=3D"#" st=
+yle=3D"text-decoration: none;max-width: 350px; display: block"><img src=3D"=
+https://ssl.gstatic.com/s2/oz/images/notifications/ppemail/email_sec_a_2x.p=
+ng" width=3D"350" height=3D"auto" style=3D"display: block;max-width: 350px;=
+width:100%"></a>
+                                                      </td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td align=3D"left" va=
+lign=3D"top" style=3D"padding-top: 20px;font-family: Google Sans, Roboto, A=
+rial, Open Sans, Helvetica, sans-serif;font-size: 16px;line-height: 24px;fo=
+nt-weight: 500;color: #202124">
+                                                          Simpler structure=
+ & clearer language
+                                                      </td>
+                                                   </tr>
+                                                       <tr>
+                                                      <td align=3D"left" va=
+lign=3D"top" style=3D"padding-top: 10px;font-family: Roboto Regular,Helveti=
+ca,Arial,sans-serif;font-size: 14px;line-height: 24px;color: #5F6368">
+                                                   We=E2=80=99ve improved t=
+he navigation and organization of the policy to make it easier to find what=
+ you=E2=80=99re looking for. We=E2=80=99ve also explained our practices in =
+more detail and with clearer language.
+                                                      </td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td align=3D"center" =
+valign=3D"top" style=3D"padding-top: 35px">
+                                                          <a href=3D"#" sty=
+le=3D"text-decoration: none;max-width: 350px; display: block"><img src=3D"h=
+ttps://ssl.gstatic.com/s2/oz/images/notifications/ppemail/email_sec_b_2x_ne=
+w_1.png" width=3D"350" height=3D"auto" style=3D"display: block;max-width: 3=
+50px;width:100%"></a>
+                                                      </td>
+                                                   </tr>
+                                                     <tr>
+                                                      <td align=3D"left" va=
+lign=3D"top" style=3D"padding-top: 15px;font-family: Google Sans, Roboto, A=
+rial, Open Sans, Helvetica, sans-serif;font-size: 16px;line-height: 24px;fo=
+nt-weight: 500;color: #202124">
+                                                          New descriptive v=
+ideos & illustrations
+                                                      </td>
+                                                   </tr>
+                                                     <tr>
+                                                      <td align=3D"left" va=
+lign=3D"top" style=3D"padding-top: 6px;font-family: Roboto Regular,Helvetic=
+a,Arial,sans-serif;font-size: 14px;line-height: 24px;color: #5F6368">
+                                                   Often a visual descripti=
+on is easier to understand than text alone, so we=E2=80=99ve added short vi=
+deos and illustrations throughout the policy.
+                                                      </td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td align=3D"center" =
+valign=3D"top" style=3D"padding-top: 35px">
+                                                         <a href=3D"#" styl=
+e=3D"text-decoration: none;max-width: 350px; display: block"><img src=3D"ht=
+tps://ssl.gstatic.com/s2/oz/images/notifications/ppemail/email_sec_c_2x_cro=
+pped.png" width=3D"350"  height=3D"auto" style=3D"display: block;max-width:=
+ 350px;width:100%"></a>
+                                                      </td>
+                                                   </tr>
+                                                     <tr>
+                                                      <td align=3D"left" va=
+lign=3D"top" style=3D"padding-top: 15px;font-family: Google Sans, Roboto, A=
+rial, Open Sans, Helvetica, sans-serif;font-size: 16px;line-height: 24px;fo=
+nt-weight: 500;color: #202124">
+                                                          Embedded privacy =
+controls
+                                                      </td>
+                                                   </tr>
+                                                      <tr>
+                                                      <td align=3D"left" va=
+lign=3D"top" style=3D"padding-top: 6px;font-family: Roboto Regular,Helvetic=
+a,Arial,sans-serif;font-size: 14px;line-height: 24px;color: #5F6368">
+                                                  We=E2=80=99ve made it eas=
+ier to jump to key settings directly from the policy, helping you make choi=
+ces about your privacy.
+                                                      </td>
+                                                   </tr>
+                                                     <tr>
+                                                      <td align=3D"left" va=
+lign=3D"top" style=3D"border-bottom:1px solid #d5d5d5; padding-top: 35px;fo=
+nt-family: Roboto Regular,Helvetica,Arial,sans-serif;font-size: 14px;line-h=
+eight: 24px;padding-bottom: 35px;color: #5F6368">
+                                                  The revised policy is <a =
+href=3D"https://accounts.google.com/AccountChooser?Email=3Dgpibbahteraiman%=
+40gmail.com&continue=3Dhttps%3A%2F%2Fpolicies.google.com%2Fprivacy%2Fupdate=
+%3Futm_source%3Dpp-email%26utm_medium%3Demail%26utm_campaign%3Dglobal" targ=
+et=3D"_blank" style=3D"text-decoration: none;color: #1A73E8">available here=
+</a> and will take effect on May 25, 2018.
+                                                  </td>
+                                                   </tr>
+                                                       <tr>
+                                                      <td align=3D"left" va=
+lign=3D"top" style=3D"padding-top: 35px;font-family: Google Sans, Roboto, A=
+rial, Open Sans, Helvetica, sans-serif;font-size: 20px;line-height: 28px;fo=
+nt-weight: 500;color: #202124">
+                                                          Improving your pr=
+ivacy controls
+                                                      </td>
+                                                   </tr>
+                                                      <tr>
+                                                      <td align=3D"left" va=
+lign=3D"top" style=3D"padding-top: 12px;font-family: Roboto Regular,Helveti=
+ca,Arial,sans-serif;font-size: 14px;line-height: 24px;color: #5F6368">
+                                                  Within the past year, we =
+updated <a href=3D"https://accounts.google.com/AccountChooser?Email=3Dgpibb=
+ahteraiman%40gmail.com&continue=3Dhttps%3A%2F%2Fmyactivity.google.com%2Fmya=
+ctivity%3Futm_source%3Dpp-email%26utm_medium%3Demail%26utm_campaign%3Dgloba=
+l" target=3D"_blank" style=3D"text-decoration: none;color: #1A73E8">My Acti=
+vity</a> so that you can better access and manage the data in your Google A=
+ccount. We also launched a redesigned <a href=3D"https://accounts.google.co=
+m/AccountChooser?Email=3Dgpibbahteraiman%40gmail.com&continue=3Dhttps%3A%2F=
+%2Fmyaccount.google.com%2Fdashboard%3Futm_source%3Dpp-email%26utm_medium%3D=
+email%26utm_campaign%3Dglobal" target=3D"_blank" style=3D"text-decoration: =
+none;color: #1A73E8">Dashboard</a>, which allows you to easily see an overv=
+iew of products you=E2=80=99re using and your data associated with them.
+                                                      </td>
+                                                   </tr>
+                                                     <tr>
+                                                      <td align=3D"left" va=
+lign=3D"top" style=3D"padding-top: 20px;font-family: Roboto Regular,Helveti=
+ca,Arial,sans-serif;font-size: 14px;line-height: 24px;color: #5F6368">
+                                                  This month, we=E2=80=99ve=
+ updated our <a href=3D"https://accounts.google.com/AccountChooser?Email=3D=
+gpibbahteraiman%40gmail.com&continue=3Dhttps%3A%2F%2Fmyaccount.google.com%2=
+Fprivacycheckup%3Futm_source%3Dpp-email%26utm_medium%3Demail%26utm_campaign=
+%3Dglobal" target=3D"_blank" style=3D"text-decoration: none;color: #1A73E8"=
+>Privacy Checkup</a> with new illustrations and examples to help you make m=
+ore informed choices about your key privacy controls. And since we understa=
+nd that your preferences may change over time, the new Privacy Checkup enab=
+les you to sign up for regular reminders to check your privacy settings.
+                                                      </td>
+                                                   </tr>
+                                                     <tr>
+                                                      <td align=3D"left" va=
+lign=3D"top" style=3D"padding-top: 15px;padding-bottom: 30px; font-family: =
+Roboto Regular,Helvetica,Arial,sans-serif;font-size: 14px;line-height: 24px=
+;color: #5F6368">
+                                                  To learn more about these=
+ and other controls to manage your privacy, visit your <a href=3D"https://a=
+ccounts.google.com/AccountChooser?Email=3Dgpibbahteraiman%40gmail.com&conti=
+nue=3Dhttps%3A%2F%2Fmyaccount.google.com%2F%3Futm_source%3Dpp-email%26utm_m=
+edium%3Demail%26utm_campaign%3Dglobal" target=3D"_blank" style=3D"text-deco=
+ration: none;color: #1A73E8">Google Account</a>.
+                                                      </td>
+                                                   </tr>
+                                          </table>
+                                       </td>
+                                    </tr>
+                                 </table>
+                              </td>
+                           </tr>
+                           <!--body ends-->
+                           <tr>
+                              <td align=3D"left" style=3D"padding-left: 15p=
+x;padding-right: 15px;padding-top: 30px" class=3D"footer">
+                                 <table width=3D"100%" cellspacing=3D"0" ce=
+llpadding=3D"0" class=3D"table">
+                                    <tr>
+                                      <td style=3D"padding-left: 35px;paddi=
+ng-right: 27px" class=3D"footer">
+                                         <a href=3D"#" style=3D"text-decora=
+tion: none;"><img src=3D"https://ssl.gstatic.com/s2/oz/images/notifications=
+/ppemail/gs_16q2_welcome_google_logo.png" alt=3D"Google" title=3D"Google" w=
+idth=3D"100" height=3D"auto" style=3D"display: block;"></a>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                          <td align=3D"left" class=3D"foote=
+r" valign=3D"top" style=3D"font-family:Roboto,Helvetica,Arial,sans-serif; f=
+ont-size: 12px; mso-line-height-rule: exactly; color:#707575; line-height:1=
+6px; padding-left: 35px;padding-right: 35px;padding-top:25px;"><a href=3D"#=
+" style=3D"text-decoration: none; color: #707575;">&copy; 2018 Google LLC, =
+1600 Amphitheatre Parkway, Mountain View, CA 94043</a></td>
+                                       </tr>
+                                       <tr>
+                                          <td align=3D"left" valign=3D"top"=
+ style=3D"font-family:Roboto,Helvetica,Arial,sans-serif; font-size: 12px; m=
+so-line-height-rule: exactly; color:#707575; line-height:16px; padding-left=
+: 35px;padding-right: 35px;padding-top:15px;padding-bottom: 105px" class=3D=
+"footer">This email was sent to <a href=3D"#" style=3D"text-decoration: non=
+e; color:#707575;">gpibbahteraiman@gmail.com</a> to provide an update about=
+ your Google Account.</td>
+                                       </tr>
+                                 </table>
+                              </td>
+                           </tr>
+                        </table>
+                      <!--[if (gte mso 9)|(IE)]>
+                  </td>
+               </tr>
+            </table>
+            <![endif]-->
+         </td>
+      </tr>
+   </table>
+</body>
+</html>
+
+--0000000000008b30da056c53a805--

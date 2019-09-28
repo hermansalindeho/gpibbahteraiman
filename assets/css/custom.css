@@ -1,0 +1,203 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  margin-top:25px;
+  font: 400 15px/1.8 "Lato", sans-serif;
+  color: #000;
+}
+
+.bgimg-1, .bgimg-3, .bgimg-2, .bgimg-4{
+  position: relative;
+  opacity: 0.9;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+.blend-green{
+  background-color: rgba(0, 255, 0, 0.2);
+  background-blend-mode: screen;
+}
+.blend-blue{
+  background-color: rgba(0, 0, 255, 0.3);
+  background-blend-mode: screen;
+}
+.blend-red{
+  background-color: rgba(255, 0, 0, 0.3);
+  background-blend-mode: screen;
+}
+.blend-yellow{
+  background-color: rgba(255, 255, 0, 0.3);
+  background-blend-mode: screen;
+}
+.blend-brown{
+  background-color: rgba(69, 56, 35, 0.3);
+  background-blend-mode: screen;
+}
+
+.bgimg-1 {
+  background-image: url("../images/GPIBBahteraIman.jpg");
+  min-height: 700px;
+}
+
+.bgimg-2 {
+  background-image: url("../images/mountain.jpg");
+  min-height: 700px;
+}
+
+.bgimg-3 {
+  background-image: url("../images/piano.jpg");
+  min-height: 500px;
+}
+
+.bgimg-4 {
+  background-image: url("../images/forest.jpg");
+  min-height: 500px;
+}
+
+.caption {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+}
+
+.caption2 {
+  /*position: absolute;
+  left: 0;
+  top: 5%;*/
+  width: 100%;
+  text-align: center;
+  color: #FFF;
+  text-shadow: 1px 1px #000, 1px -1px #000, -1px 1px #000, -1px -1px #000;
+}
+
+.caption3 {
+  position: absolute;
+  left: 0;
+  top: 15%;
+  width: 100%;
+  text-align: center;
+  color: #FFF;
+  text-shadow: 1px 1px #000, 1px -1px #000, -1px 1px #000, -1px 1px #000;
+}
+
+.caption span.border {
+  background-color: #111;
+  color: #ffF;
+  padding: 18px;
+  font-size: 25px;
+  letter-spacing: 10px;
+}
+
+.ministries{
+  font-size: 20px;
+}
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1024px) {
+    .bgimg-1, .bgimg-2, .bgimg-3 {
+		position: relative;
+	  opacity: 0.9;
+	  background-attachment: fixed;
+	  background-position: center;
+	  background-repeat: no-repeat;
+	  background-size: cover;
+    }
+}
+
+@media (max-width: 414px) {
+  .bgimg-4 {
+    min-height: 600px;
+  }
+  .bgimg-2 {
+    min-height: 1200px;
+  }
+  .imgevent{
+    max-width: 90%;
+  }
+  .ministries{
+  font-size: 15px;
+}
+}
+
+footer {
+    background-color: #222;
+    color: #ffffff;
+    padding: 20px;
+}
+
+.underline{
+  width: 300px;
+  border-top: 2px solid #ea9312;
+  margin-top: -15px;
+}
+
+.carousel-inner > .item > img {
+  width:100%;
+  height:350px;
+}
+
+.banner{
+  max-width: 100%;
+}
+
+.ifgflogo{
+  margin-top: -10px;
+}
+
+.iseng{
+  margin-top:25px;
+  margin-bottom:10px;
+}
+
+span.logo{
+  font-size: 2em;
+}
+
+.imgevent{
+  max-width: 90%;
+}
+
+.judul-center {
+  text-align: center;
+}
+
+.bgimg-presbiter {
+  background-image: url("../images/Presbiter.jpg");
+  background-position: 50% 30px;
+  min-height: 400px;
+  background-size:640px 480px;
+  background-repeat:no-repeat;
+
+  position: relative;
+  opacity: 0.9;
+  background-attachment: fixed;
+}
+
+.bgimg-donor-darah {
+  background-image: url("../images/donor_darah.JPG");
+  background-position: 50% 50px;
+  min-height: 400px;
+  background-size:660px 480px;
+  background-repeat:no-repeat;
+
+  position: relative;
+  opacity: 0.9;
+  background-attachment: fixed;
+}
+
+ol.daftar {
+  list-style-type: lower-alpha; 
+  font-family: 'Times New Roman', Times, serif; 
+  font-size: 18px; 
+  text-align: justify;
+}
+
+ol.perkawinan {
+  font-size: 18px;
+}
+

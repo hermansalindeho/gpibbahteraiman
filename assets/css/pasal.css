@@ -1,0 +1,19 @@
+ul.daftar-pasal {
+  	list-style-type:circle;
+  	font-size: 0.9em;
+}
+
+@media screen and (min-width: 768px) {
+	li.pasal {
+		margin-left: 47px;
+		text-indent: -47px;
+	}
+
+	ul.daftar-sub-pasal {
+		margin-left: 134px;
+	}
+
+	li.ayat {
+		text-indent: -69px;
+	}
+}

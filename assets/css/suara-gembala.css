@@ -1,0 +1,41 @@
+div.judul-suara-gembala {
+  text-align: center;
+  font-family: Segoe print;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+p.paragraf-suara-gembala {
+  text-indent: 50px;
+  font-size: 16px;
+  text-align: justify;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+p.kesimpulan-suara-gembala {
+  font-size: 25px;
+  text-align: center;
+  font-family: Segoe Print;
+  padding: 0 25px;
+}
+
+p.penutup-suara-gembala {
+  text-align: center;
+  font-size: 18px;
+  font-family: Times New Roman;
+  font-weight: bold;
+}
+
+li.item-list-suara-gembala {
+  padding-left: 12px;
+  padding-bottom: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  p.paragraf-suara-gembala {
+    font-size: 20px;
+  }
+}
+
+
+
