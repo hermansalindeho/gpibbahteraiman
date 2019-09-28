@@ -1,3 +1,3 @@
-# GPIB Bahtera Iman!
+# GPIB Bahtera Iman
 
-Ini adalah sourcecode website [GPIB Bahtera Iman](https://gpibbahteraiman.com). 
+Ini adalah sourcecode website [GPIB Bahtera Iman](http://gpibbahteraiman.com). 
